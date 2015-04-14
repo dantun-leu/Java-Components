@@ -10,6 +10,7 @@ public class Components extends JFrame implements ActionListener {
 	// Declare objects
 	JLabel label;
 	JButton button1, button2;
+	JTextField text; 
 
 	public Components() {
 		super("Components");
@@ -23,15 +24,21 @@ public class Components extends JFrame implements ActionListener {
 		label = new JLabel("This is a label.", JLabel.CENTER);
 		button1 = new JButton("Button1");
 		button2 = new JButton("Button2");
+		text = new JTextField (10); 
 
 		// Add contents
 		content.add(label);
 		content.add(button1);
 		content.add(button2);
+		content.add (text);
+		
+		
 
 		// Add listeners
 		button1.addActionListener(this);
 		button2.addActionListener(this);
+		text.addActionListener (this); 
+		
 
 		// Show the contents
 		this.setContentPane(content);
@@ -44,6 +51,10 @@ public class Components extends JFrame implements ActionListener {
 		} else if (e.getSource() == button2) {
 			label.setText("Button 2 was pressed.");
 		}
+		else if (e.getSource () == text)
+		 {
+		 label.setText ("You typed: " + text.getText ());
+		 }
 	}
 
 	public static void main(String[] args) {
