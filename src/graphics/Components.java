@@ -6,12 +6,13 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Components extends JFrame implements ActionListener {
+public class Components extends JFrame implements ActionListener, ItemListener {
 	// Declare objects
 	JLabel label;
 	JButton button1, button2;
 	JTextField text;
 	JRadioButton radio1, radio2;
+	JCheckBox chkbox1, chkbox2;
 
 	public Components() {
 		super("Components");
@@ -28,6 +29,8 @@ public class Components extends JFrame implements ActionListener {
 		text = new JTextField(10);
 		radio1 = new JRadioButton("Radio Button 1");
 		radio2 = new JRadioButton("Radio Button 2");
+		chkbox1 = new JCheckBox("CheckBox 1");
+		chkbox2 = new JCheckBox("CheckBox 2");
 
 		// Group the radio buttons (so only one can be selected at a time)
 		ButtonGroup group = new ButtonGroup();
@@ -41,6 +44,8 @@ public class Components extends JFrame implements ActionListener {
 		content.add(text);
 		content.add(radio1);
 		content.add(radio2);
+		content.add(chkbox1);
+		content.add(chkbox2);
 
 		// Add listeners
 		button1.addActionListener(this);
@@ -48,6 +53,8 @@ public class Components extends JFrame implements ActionListener {
 		text.addActionListener(this);
 		radio1.addActionListener(this);
 		radio2.addActionListener(this);
+		chkbox1.addItemListener(this);
+		chkbox2.addItemListener(this);
 
 		// Show the contents
 		this.setContentPane(content);
@@ -65,6 +72,23 @@ public class Components extends JFrame implements ActionListener {
 			label.setText("Radio Button 1 was pressed.");
 		} else if (e.getSource() == radio2) {
 			label.setText("Radio Button 2 was pressed.");
+		}
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		Object source = e.getSource();
+		if (source == chkbox1) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				label.setText("CheckBox 1 was checked.");
+			} else {
+				label.setText("CheckBox 1 was unchecked.");
+			}
+		} else if (source == chkbox2) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				label.setText("CheckBox 2 was checked.");
+			} else {
+				label.setText("CheckBox 2 was unchecked.");
+			}
 		}
 	}
 
