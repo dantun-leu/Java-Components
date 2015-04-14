@@ -16,14 +16,14 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 	JCheckBox chkbox1, chkbox2;
 	JList<String> list;
 	JComboBox<String> combo;
-	
+
 	public Components() {
 		super("Components");
-		
+
 		// Set up the frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 300, 200, 350);
-		
+
 		// Create objects
 		JPanel outer = new JPanel(new BorderLayout());
 		JPanel content = new JPanel();
@@ -40,12 +40,12 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		String[] comboItems = { "Bird", "Cat", "Dog", "Rabbit", "Komodo Dragon" };
 		combo = new JComboBox<>(comboItems);
 		combo.setEditable(true);
-		
+
 		// Group the radio buttons (so only one can be selected at a time)
 		ButtonGroup group = new ButtonGroup();
 		group.add(radio1);
 		group.add(radio2);
-		
+
 		// Add contents
 		outer.add(label, BorderLayout.NORTH);
 		outer.add(content, BorderLayout.CENTER);
@@ -58,7 +58,7 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		content.add(chkbox2);
 		content.add(list);
 		content.add(combo);
-		
+
 		// Add listeners
 		button1.addActionListener(this);
 		button2.addActionListener(this);
@@ -69,12 +69,12 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		chkbox2.addItemListener(this);
 		list.addListSelectionListener(this);
 		combo.addActionListener(this);
-		
+
 		// Show the contents
 		this.setContentPane(outer);
 		this.setVisible(true);
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
 			label.setText("Button 1 was pressed.");
@@ -87,11 +87,11 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		} else if (e.getSource() == radio2) {
 			label.setText("Radio Button 2 was pressed.");
 		} else if (e.getSource() == combo) {
-			label.setText("Combo Item #" + (combo.getSelectedIndex() +1) + ":"
+			label.setText("Combo Item #" + (combo.getSelectedIndex() + 1) + ":"
 					+ combo.getSelectedItem());
 		}
 	}
-	
+
 	public void itemStateChanged(ItemEvent e) {
 		Object source = e.getSource();
 		if (source == chkbox1) {
@@ -108,14 +108,14 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 			}
 		}
 	}
-	
+
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource() == list) {
-			label.setText("List Item #" + (list.getSelectedIndex() +1) + ": "
+			label.setText("List Item #" + (list.getSelectedIndex() + 1) + ": "
 					+ list.getSelectedValue());
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		new Components();
 	} // main method
