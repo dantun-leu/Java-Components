@@ -29,6 +29,10 @@ public class Components extends JFrame implements ActionListener {
 		content.add(button1);
 		content.add(button2);
 
+		// Add listeners
+		button1.addActionListener(this);
+		button2.addActionListener(this);
+
 		// Show the contents
 		this.setContentPane(content);
 		this.setVisible(true);
