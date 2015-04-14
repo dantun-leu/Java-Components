@@ -17,6 +17,19 @@ public class Components extends JFrame {
 		// Set up the frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 300, 200, 350);
+		
+		// Create objects
+		 JPanel content = new JPanel();
+		 label = new JLabel ("This is a label.",JLabel.CENTER);
+		 button1 = new JButton ("Button1");
+		 button2 = new JButton ("Button2"); 
+		 
+		// Add contents
+		 content.add (label);
+		 content.add (button1);
+		 content.add (button2);
+		 
+		 
 
 		// Show the contents
 		this.setVisible(true);
