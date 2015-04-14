@@ -6,13 +6,15 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Components extends JFrame implements ActionListener, ItemListener {
+public class Components extends JFrame implements ActionListener, ItemListener,
+		ListSelectionListener {
 	// Declare objects
 	JLabel label;
 	JButton button1, button2;
 	JTextField text;
 	JRadioButton radio1, radio2;
 	JCheckBox chkbox1, chkbox2;
+	JList list;
 
 	public Components() {
 		super("Components");
@@ -31,6 +33,8 @@ public class Components extends JFrame implements ActionListener, ItemListener {
 		radio2 = new JRadioButton("Radio Button 2");
 		chkbox1 = new JCheckBox("CheckBox 1");
 		chkbox2 = new JCheckBox("CheckBox 2");
+		String[] listItems = { "Canada", "United States of America", "Mexico" };
+		list = new JList(listItems);
 
 		// Group the radio buttons (so only one can be selected at a time)
 		ButtonGroup group = new ButtonGroup();
@@ -46,6 +50,7 @@ public class Components extends JFrame implements ActionListener, ItemListener {
 		content.add(radio2);
 		content.add(chkbox1);
 		content.add(chkbox2);
+		content.add(list);
 
 		// Add listeners
 		button1.addActionListener(this);
@@ -55,6 +60,7 @@ public class Components extends JFrame implements ActionListener, ItemListener {
 		radio2.addActionListener(this);
 		chkbox1.addItemListener(this);
 		chkbox2.addItemListener(this);
+		list.addListSelectionListener(this);
 
 		// Show the contents
 		this.setContentPane(content);
@@ -89,6 +95,13 @@ public class Components extends JFrame implements ActionListener, ItemListener {
 			} else {
 				label.setText("CheckBox 2 was unchecked.");
 			}
+		}
+	}
+
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getSource() == list) {
+			label.setText("List Item #" + list.getSelectedIndex() + ": "
+					+ list.getSelectedValue());
 		}
 	}
 
