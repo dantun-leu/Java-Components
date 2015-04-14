@@ -25,6 +25,7 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		this.setBounds(300, 300, 200, 350);
 		
 		// Create objects
+		JPanel outer = new JPanel(new BorderLayout());
 		JPanel content = new JPanel();
 		label = new JLabel("This is a label.", JLabel.CENTER);
 		button1 = new JButton("Button1");
@@ -38,7 +39,7 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		list = new JList<>(listItems);
 		String[] comboItems = { "Bird", "Cat", "Dog", "Rabbit", "Komodo Dragon" };
 		combo = new JComboBox<>(comboItems);
-		combo.setEditable(true); 
+		combo.setEditable(true);
 		
 		// Group the radio buttons (so only one can be selected at a time)
 		ButtonGroup group = new ButtonGroup();
@@ -46,7 +47,8 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		group.add(radio2);
 		
 		// Add contents
-		content.add(label);
+		outer.add(label, BorderLayout.NORTH);
+		outer.add(content, BorderLayout.CENTER);
 		content.add(button1);
 		content.add(button2);
 		content.add(text);
@@ -69,7 +71,7 @@ public class Components extends JFrame implements ActionListener, ItemListener,
 		combo.addActionListener(this);
 		
 		// Show the contents
-		this.setContentPane(content);
+		this.setContentPane(outer);
 		this.setVisible(true);
 	}
 	
