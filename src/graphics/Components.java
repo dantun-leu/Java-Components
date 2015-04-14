@@ -10,7 +10,8 @@ public class Components extends JFrame implements ActionListener {
 	// Declare objects
 	JLabel label;
 	JButton button1, button2;
-	JTextField text; 
+	JTextField text;
+	JRadioButton radio1, radio2;
 
 	public Components() {
 		super("Components");
@@ -24,21 +25,29 @@ public class Components extends JFrame implements ActionListener {
 		label = new JLabel("This is a label.", JLabel.CENTER);
 		button1 = new JButton("Button1");
 		button2 = new JButton("Button2");
-		text = new JTextField (10); 
+		text = new JTextField(10);
+		radio1 = new JRadioButton("Radio Button 1");
+		radio2 = new JRadioButton("Radio Button 2");
+
+		// Group the radio buttons (so only one can be selected at a time)
+		ButtonGroup group = new ButtonGroup();
+		group.add(radio1);
+		group.add(radio2);
 
 		// Add contents
 		content.add(label);
 		content.add(button1);
 		content.add(button2);
-		content.add (text);
-		
-		
+		content.add(text);
+		content.add(radio1);
+		content.add(radio2);
 
 		// Add listeners
 		button1.addActionListener(this);
 		button2.addActionListener(this);
-		text.addActionListener (this); 
-		
+		text.addActionListener(this);
+		radio1.addActionListener(this);
+		radio2.addActionListener(this);
 
 		// Show the contents
 		this.setContentPane(content);
@@ -50,11 +59,13 @@ public class Components extends JFrame implements ActionListener {
 			label.setText("Button 1 was pressed.");
 		} else if (e.getSource() == button2) {
 			label.setText("Button 2 was pressed.");
+		} else if (e.getSource() == text) {
+			label.setText("You typed: " + text.getText());
+		} else if (e.getSource() == radio1) {
+			label.setText("Radio Button 1 was pressed.");
+		} else if (e.getSource() == radio2) {
+			label.setText("Radio Button 2 was pressed.");
 		}
-		else if (e.getSource () == text)
-		 {
-		 label.setText ("You typed: " + text.getText ());
-		 }
 	}
 
 	public static void main(String[] args) {
